@@ -1,0 +1,12 @@
+package labb5.model;
+
+public class Customer extends State {
+	private double timeEntered;
+	private double timeLeft;
+	private double timeInQueue;
+	private double timePicked;
+	private double timePayed;
+	public Customer() {
+		
+	}
+}

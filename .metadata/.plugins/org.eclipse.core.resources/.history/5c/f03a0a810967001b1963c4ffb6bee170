@@ -1,0 +1,17 @@
+package labb5.controller;
+
+import labb5.model.State;
+
+public class Event {
+	private double timeStarted;
+	private double timeEnded;
+	
+	private State state;
+	
+	private EventQueue queue;
+	
+	public Event() {
+		state = new State();
+		queue = new EventQueue();
+	}
+}

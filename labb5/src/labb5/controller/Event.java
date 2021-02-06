@@ -1,0 +1,20 @@
+package labb5.controller;
+
+import labb5.model.Customer;
+import labb5.model.State;
+
+abstract public class Event 
+{
+   protected State state;
+   protected EventQueue eventQueue;
+   
+   abstract public void run();
+   abstract public double getTime(); 
+   abstract public String getName();
+   abstract public Customer getCustomer();
+   
+   public Event(EventQueue eventQueue) 
+   {
+      this.eventQueue = eventQueue;
+   }
+}

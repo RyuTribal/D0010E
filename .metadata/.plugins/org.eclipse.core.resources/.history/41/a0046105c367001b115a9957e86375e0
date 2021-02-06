@@ -1,0 +1,38 @@
+package labb5.controller;
+
+import java.util.ArrayList;
+
+import labb5.model.State;
+
+public class EventQueue {
+	private ArrayList<Event> events = new ArrayList<Event>();
+	private Event currentEvent;
+	private State eventState;
+	private double timePassed = 0;
+	public EventQueue() {
+		eventState = new State();
+	}
+	public ArrayList<Event> getEvents() {
+		return events;
+	}
+	
+	public void addEvent(Event event) {
+		events.add(event);
+	}
+	
+	public void setCurrentEvent(Event e) {
+		currentEvent = e;
+	}
+	
+	public Event getCurrentEvent() {
+		return currentEvent;
+	}
+	
+	public double getCurrentTime() {
+		return timePassed;
+	}
+	
+	public void setCurrentTime(double currentTime) {
+		timePassed = currentTime;
+	}
+}

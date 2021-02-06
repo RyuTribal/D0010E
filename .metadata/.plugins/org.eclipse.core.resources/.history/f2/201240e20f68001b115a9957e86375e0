@@ -1,0 +1,29 @@
+package CustomerSimulator.controller;
+
+import CustomerSimulator.models.Customer;
+import CustomerSimulator.models.Store;
+
+public class Pick extends Event {
+	private double timeStarted;
+	private Store store;
+	private Customer customer;
+	private EventQueue events;
+	public Pick(Store s, EventQueue q, Customer c, double t) {
+		this.store = s;
+		this.events = q;
+		this.customer = c;
+		this.timeStarted = t;
+	}
+	public void run() {
+		System.out.println("Customer "+customer.getID()+" picked at: "+this.timeStarted);
+		store.toQueue(customer.getID());
+		double newTime = this.timeStarted + +this.store.getNextPayTime();
+		if(this.store.getPayQueueSize() > 1) {
+			newTime += store.getFirstPay();
+		}
+		events.addEvent(new Pay(this.store, this.events, this.customer, newTime));
+	}
+	public double getTime() {
+		return this.timeStarted;
+	}
+}

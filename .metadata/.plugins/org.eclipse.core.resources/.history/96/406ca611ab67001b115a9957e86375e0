@@ -1,0 +1,19 @@
+package labb5.model;
+
+import java.util.Observable;
+
+import labb5.view.View;
+
+public class State extends Observable {
+	private boolean simRunning;
+	
+	private double timeRan;
+	private View view;
+	
+	public State(){
+		view = new View();
+		addObserver(view);
+	}
+	
+	
+}

@@ -1,0 +1,25 @@
+package labb5.controller;
+import java.time.LocalTime;
+
+import labb5.model.State;
+
+public class Event {
+	private double timeStarted;
+	private double timeEnded;
+	
+	private double timeElapsed = 0;
+	
+	private EventQueue queue;
+	
+	public Event(EventQueue q, double timeStarted) {
+		queue = q;
+		this.timeStarted = timeStarted;
+	}
+	
+	public void EventStart() {
+		LocalTime myObj = LocalTime.now();
+	}
+	public void EventEnd() {
+		
+	}
+}

@@ -1,0 +1,8 @@
+package lab4.data;
+
+public class GomokuGrid {
+	private class GomokuSquare{
+		private boolean isOcupiedPlayer = false;
+		private boolean isOccupiedOther = false;
+	}
+}

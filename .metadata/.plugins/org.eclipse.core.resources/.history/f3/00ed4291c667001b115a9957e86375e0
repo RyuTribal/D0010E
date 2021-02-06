@@ -1,0 +1,33 @@
+package labb5.model;
+
+import labb5.controller.EventQueue;
+import labb5.controller.StoreClose;
+
+public class StoreState extends State {
+	private double timeCloses;
+	private int registriesOpen;
+	private int maxOccupants;
+	
+	private boolean isClosed;
+	
+	private Customer[] customers;
+	
+	private EventQueue queue;
+	public StoreState(double timeCloses, int registriesOpen, int maxOccupants) {
+		this.timeCloses = timeCloses;
+		this.registriesOpen = registriesOpen;
+		this.maxOccupants = maxOccupants;
+		this.queue = new EventQueue();
+		this.queue.addEvent(new StoreClose(this, this.queue, 0));
+	}
+	
+	public void openStore() {
+		customers = new Customer[maxOccupants];
+	}
+	
+	public void closeStore() {
+		stopSim();
+	}
+	
+	
+}

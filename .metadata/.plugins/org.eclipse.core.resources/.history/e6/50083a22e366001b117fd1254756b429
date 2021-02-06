@@ -1,0 +1,161 @@
+package lab4.data;
+
+import java.util.Observable;
+
+public class GomokuGrid extends Observable {
+    public static final int EMPTY = 0;
+    public static final int ME = 1;
+    public static final int OTHER = 2;
+    public static final int INROW = 5;
+	
+	public int[][] grid;
+	
+	GomokuGrid(int size){
+		this.grid = new int[size][size];
+	}
+	
+	public int getLocation(int x, int y) {
+		return grid[x][y];
+	}
+	
+	public int getSize() {
+		return grid.length;
+	}
+	
+	public boolean move(int x, int y, int player) {
+		if(grid[x][y] == EMPTY) {
+			grid[x][y] = player;
+			return true;
+		}
+		return false;
+	}
+	
+	public void clearGrid() {
+		this.grid = new int[getSize()][getSize()];
+	}
+	public boolean isWinner(int player){
+        return horizontalWin(player) || verticalWin(player) || diagonalDownWin(player) || diagonalUpWin(player);
+    }
+
+    /**
+    *
+    *HorizontalWin kollar om någon har tillräckligt med kulor i rad för att vinna
+    *
+    *det looparna gör är att den kollar ett y värde i taget, och går igenom sidledes  
+    *för varje y värde. Och kollar om det är tillräckligt med kulor i rad
+    *för att vinna
+    *
+    */
+    
+    private boolean horizontalWin(int player){
+
+    	for(int y = 0; y < getSize(); y++){
+        	int inARowCount = 0;
+            for(int x = 0; x < getSize(); x++){
+                if(grid[y][x] == player){
+                    inARowCount += 1;
+                }
+                else {
+                    inARowCount = 0;
+                }
+                if(inARowCount == INROW){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    /**
+    *
+    *VerticalWin kollar om någon har tillräckligt med kulor i rad för att vinna
+    *
+    *det looparna gör är att den kollar en x värde i taget, och går igenom uppifrån  
+    *och ner för varje x värde. Och kollar om det är tillräckligt med kulor i rad
+    *för att vinna
+    */
+    private boolean verticalWin(int player){
+       
+        for(int x = 0; x < getSize(); x++){
+        	int inARowCount = 0;
+            for(int y = 0; y < getSize(); y++){
+                if(grid[y][x] == player){
+                    inARowCount += 1;
+                }
+                else {
+                    inARowCount = 0;
+                }
+                if(inARowCount == INROW){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    /**
+    *
+    *kollar om player har vunnit snett ner åt höger(\).
+    *
+    *det looparna gör är att den tar ett x värde i taget och
+    *går igenom för varje y värde och kollar diagonalt
+    *om det finns tillräckligt med kulor i rad för att vinna.
+    *
+    *den går till nästa y värde och resetar inARowCount om den någon gång får
+    *ett ArrayIndexOutOfBoundsException Error.
+    */
+    private boolean diagonalDownWin(int player){
+        
+        for(int x = 0; x < getSize(); x++){
+        	int inARowCount = 0;
+            for(int y = 0; y < getSize(); y++){
+                for(int n = 0; n < getSize(); n ++){
+                    try{
+                        if(grid[x + n][y + n] == player){
+                            inARowCount += 1;
+                        }
+                        else {
+                            inARowCount = 0;
+                        }
+                        if(inARowCount == INROW){
+                            return true;
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e){
+                        inARowCount = 0;
+                        break;
+                    }
+
+                }
+            }
+        }
+
+        return false;
+    }
+    
+    private boolean diagonalUpWin(int player){
+
+        for(int x = 0; x < getSize(); x++){
+        	int inARowCount = 0;
+            for(int y = 0; y < getSize(); y++){
+                for(int n = 0; n < getSize(); n ++){
+                    try{
+                        if(grid[x - n][y + n] == player){
+                            inARowCount += 1;
+                        }
+                        else {
+                            inARowCount = 0;
+                        }
+                        if(inARowCount == INROW){
+                            return true;
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e){
+                        inARowCount = 0;
+                        break;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+	
+}

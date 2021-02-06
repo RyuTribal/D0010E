@@ -1,0 +1,18 @@
+package labb5.controller;
+
+import labb5.model.Customer;
+import labb5.model.State;
+import labb5.model.StoreState;
+
+public class StoreClose extends Event {
+
+	private double time;
+	   
+	   public StoreClose(State state, EventQueue eventQueue, double time) 
+	   {
+	      super(state, eventQueue);
+	      this.time = time;
+	      
+	   }
+	
+}

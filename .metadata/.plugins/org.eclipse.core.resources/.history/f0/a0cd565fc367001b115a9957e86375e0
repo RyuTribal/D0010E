@@ -1,0 +1,38 @@
+package labb5.controller;
+
+import labb5.model.StoreState;
+
+public class StoreClose extends Event {
+
+	private double time;
+	   
+	   public Close(State state, EventQueue eventQueue, double time) 
+	   {
+	      super(state, eventQueue);
+	      this.time = time;
+	      
+	   }
+
+	   public void doMe() 
+	   {
+	      state.update(this);
+	      
+	      state.getStore().setIsOpen(false);
+	   }
+
+	   public double getTime() 
+	   {
+	      return time;
+	   }
+
+	   public Customer getCustomer()
+	   {
+	      return null;
+	   }
+
+	   public String getName()
+	   {
+	      return "Close";
+	   }
+	
+}

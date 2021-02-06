@@ -1,0 +1,13 @@
+package lab4;
+
+public class GomokuMain {
+	public static void main(String[] args) {
+		int portNumber = 0;
+		if(args.length < 1) {
+			portNumber = 4000;
+		}
+		else {
+			portNumber = (int) args[0];
+		}
+	}
+}

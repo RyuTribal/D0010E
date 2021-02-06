@@ -1,0 +1,7 @@
+package labb5.model;
+
+import java.util.Observable;
+
+public class State extends Observable {
+	private isStopping = false;
+}

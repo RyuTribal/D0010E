@@ -1,0 +1,12 @@
+package labb5.controller;
+
+import labb5.model.StoreState;
+
+public class StoreClose extends Event {
+
+	public StoreClose(EventQueue q, StoreState state) {
+		super(q);
+		state.closeStore();
+	}
+	
+}

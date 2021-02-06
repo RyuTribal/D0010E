@@ -1,0 +1,42 @@
+package labb5.controller;
+
+import labb5.model.Customer;
+import labb5.model.State;
+import labb5.model.StoreState;
+
+public class StoreClose extends Event {
+
+	private double time;
+	   
+	   public StoreClose(State state, EventQueue eventQueue, double time) 
+	   {
+	      super(eventQueue);
+	      this.time = time;
+	      
+	   }
+
+	@Override
+	public void run() {
+		state.stopSim();
+		
+	}
+
+	@Override
+	public double getTime() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Customer getCustomer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

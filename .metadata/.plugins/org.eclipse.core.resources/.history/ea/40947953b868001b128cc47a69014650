@@ -1,0 +1,40 @@
+package CustomerSimulator.controller;
+
+import CustomerSimulator.models.Customer;
+
+import CustomerSimulator.models.PayQueue;
+import CustomerSimulator.models.Store;
+
+public class Pay extends Event {
+	private double timeStarted;
+    private Store store;
+    private Customer customer;
+    private EventQueue events;
+    private int registry;
+    private double payNextTime;
+    public Pay(Store s, EventQueue q, Customer c, double t, int r, double nt) {
+        this.store = s;
+        this.events = q;
+        this.customer = c;
+        this.timeStarted = t;
+        this.registry = r;
+        this.payNextTime = nt;
+    }
+    public void run() {
+    	this.store.getQueue(registry).setQueueTime(this.timeStarted, this.payNextTime);
+    	this.store.getQueue(registry).removeFromQueue();
+    	double freeRegTime = this.timeStarted - store.getTime();
+        this.store.setFreeTime(freeRegTime, registry);
+        this.store.decreasePeopleInStore();
+        this.store.setEventName("Pay");
+        store.setCurrentTime(this.timeStarted);
+        store.update();
+    }
+	public double getTime() {
+		return this.timeStarted;
+	}
+	
+	public Customer getCustomer() {
+		return this.customer;
+	}
+}

@@ -1,0 +1,60 @@
+package lab4.data;
+
+import java.util.Observable;
+
+public class GomokuGrid extends Observable {
+    public static final int EMPTY = 0;
+    public static final int ME = 1;
+    public static final int OTHER = 2;
+    public static final int INROW = 5;
+	
+	public int[][] grid;
+	
+	GomokuGrid(int size){
+		this.grid = new int[size][size];
+	}
+	
+	public int getLocation(int x, int y) {
+		return grid[x][y];
+	}
+	
+	public int getSize() {
+		return grid.length;
+	}
+	
+	public boolean move(int x, int y, int player) {
+		if(grid[x][y] == EMPTY) {
+			grid[x][y] = player;
+			return true;
+		}
+		return false;
+	}
+	
+	public void clearGrid() {
+		this.grid = new int[getSize()][getSize()];
+	}
+	public boolean isWinner(int player) {
+		return wonReg(player);
+	}
+	public boolean wonReg(int player) {
+		int counter = 0;
+		for(int i = 0; i < this.grid.length; i++) {
+			for(int j = 0; j < this.grid[i].length; j++) {
+				if(grid[i][j] == player) {
+					counter++;
+				}
+				else {
+					counter = 0;
+				}
+				if(counter >= INROW ) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean wonDiag(int player) {
+		return true;
+	}
+}

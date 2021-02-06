@@ -1,0 +1,14 @@
+package CustomerSimulator.controller;
+
+import CustomerSimulator.models.Store;
+
+public class StoreClose extends Event {
+	private Store store;
+	public StoreClose(Store s) {
+		this.store = s;
+	}
+
+	public void run() {
+		this.store.closeStore();
+	}
+}

@@ -1,0 +1,33 @@
+package CustomerSimulator.models;
+
+import java.util.ArrayList;
+
+public class PayQueue {
+	private double customerQueueTime = 0.0;
+	private ArrayList<Integer> payQueue = new ArrayList<>();
+	private int registry;
+	
+	public PayQueue(int r) {
+		this.registry = r;
+	}
+	
+	public void toQueue(int id) {
+    	this.payQueue.add(id);
+    	System.out.println(this.payQueue.toString());
+    }
+    
+    public int getFirstPay() {
+    	return this.payQueue.get(0);
+    }
+    
+    public void setQueueTime(double time) {
+    	this.customerQueueTime = time;
+    }
+    
+    public int getPayQueueSize() {
+    	return this.payQueue.size();
+    }
+    public void removeFromQueue() {
+    	payQueue.remove(0);
+    }
+}

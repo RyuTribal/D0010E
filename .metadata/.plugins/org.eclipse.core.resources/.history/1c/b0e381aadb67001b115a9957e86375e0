@@ -1,0 +1,35 @@
+package CustomerSimulator.controller;
+
+import java.util.ArrayList;
+
+import random.ExponentialRandomStream;
+import random.UniformRandomStream;
+
+public class Store {
+	private int maxPeople;
+    private double lambda;
+    private double[] pickMinMax;
+    private double[] payMinMax;
+    private long seed;
+    private int peopleInStore = 0;
+    private int totalAmountOfCustomers = 0;
+    private int missedCustomers = 0;
+    private ArrayList<Customer> CustomerID = new ArrayList<Customer>();
+    private boolean isOpen = false;
+    private String currentID = "";
+    private double currentTime = 0.0;
+    private int totAmOfRegs;
+    private ExponentialRandomStream ArrivalTime;
+    private UniformRandomStream PickTime;
+    private UniformRandomStream PayTime;
+    private int customersDone = 0;
+	public Store(int cashiers, int maxPeople, double lambda, double[] pickMinMax, double[] payMinMax, long seed) {
+		this.totAmOfRegs = cashiers;
+        this.maxPeople = maxPeople;
+        this.lambda = lambda;
+        this.pickMinMax = pickMinMax;
+        this.payMinMax = payMinMax;
+        this.seed = seed;
+        this.ArrivalTime = new ExponentialRandomStream(lambda,seed);
+	}
+}

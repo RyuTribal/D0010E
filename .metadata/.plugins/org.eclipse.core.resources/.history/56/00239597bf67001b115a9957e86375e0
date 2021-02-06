@@ -1,0 +1,19 @@
+package labb5;
+
+import labb5.controller.Event;
+import labb5.controller.EventQueue;
+import labb5.model.StoreState;
+
+public class Simulator {
+	public void run() {
+		double timeCloses = 30.0;
+		int registriesOpen = 2;
+		int maxOccupants = 10;
+		StoreState store = new StoreState(timeCloses, registriesOpen, maxOccupants);
+		EventQueue queue = new EventQueue();
+		for(int i = 0; i < queue.getEvents().size(); i++) {
+			Event event = queue.getEvents().get(i);
+		}
+		
+	}
+}

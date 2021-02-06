@@ -1,0 +1,80 @@
+import java.util.ArrayList;
+import java.util.NoSuchElementException;
+
+public class FIFO implements Queue{
+	private ArrayList<Object> arr = new ArrayList<Object>();
+	private int arrMaxSize = 0;
+
+	public int size(){
+		return arr.size();
+	}
+	public int maxSize(){
+		return arrMaxSize;
+	}
+	public boolean add(Object object){
+		this.arr.add(object);
+		if(this.arrMaxSize < arr.size()){
+			arrMaxSize++;
+		}
+	}
+
+	public boolean isEmpty(){
+		if(arr.size() < 1){
+			return true;
+		}
+		return false;
+	}
+
+
+	public boolean equals(Object f){
+		if(f.getClass() != this.getClass()){
+			throw new ClassCastException();
+		}
+		return ((FIFO) f).arr.size() == this.arr.size() && this.objectsAreEqual(f);
+	}
+
+	public boolean objectsAreEqual(Object f){
+		for(int i = 0; i < this.arr.size(); i++){
+			if(this.arr.get(i) == null && ((FIFO) f).arr.get(i) == null){
+				continue;
+			}
+			else if(this.arr.get(i) == ((FIFO) f).arr.get(i)){
+				continue;
+			}
+			else{
+				return false;
+			}
+
+		}
+		return true;
+	}
+
+	public String toString(){
+		String queueMessage = "Queue: ";
+		for(Object elem : this.arr){
+            queueMessage += "(" + String.valueOf(elem) + ") ";
+        }
+        return queueMessage;
+	}
+
+
+
+	public Object first() throws NoSuchElementException{
+		if(this.arr.size() < 1){
+			throw new NoSuchElementException();
+		}
+		else{
+			return this.arr.get(0);
+		}
+		
+	}
+
+	public void removeFirst() throws NoSuchElementException{
+		if(this.arr.size() < 1){
+			throw new NoSuchElementException();
+		}
+		else{
+			this.arr.remove(0);
+		}
+	}
+}

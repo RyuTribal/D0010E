@@ -1,0 +1,20 @@
+package lab4;
+import lab4.client.GomokuClient;
+import lab4.data.GomokuGameState;
+import lab4.gui.GomokuGUI;
+
+public class GomokuMain {
+	public static void main(String[] args) {
+		int portNumber = 0;
+		if(args.length < 1) {
+			portNumber = 4000;
+		}
+		else {
+			portNumber = Integer.parseInt(args[0]);
+		}
+		GomokuClient client = new GomokuClient(portNumber);
+		GomokuGameState gameState = new GomokuGameState(client);
+		GomokuGUI gui = new GomokuGUI(client, gameState);
+		
+	}
+}

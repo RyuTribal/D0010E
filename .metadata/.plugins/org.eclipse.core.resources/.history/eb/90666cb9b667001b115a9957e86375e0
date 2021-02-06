@@ -1,0 +1,31 @@
+package labb5.model;
+
+public class StoreState extends State {
+	private double timeCloses;
+	private int registriesOpen;
+	private int maxOccupants;
+	
+	private boolean isClosed;
+	
+	private Customer[] customers;
+	
+	public StoreState(double timeCloses, int registriesOpen, int maxOccupants) {
+		this.timeCloses = timeCloses;
+		this.registriesOpen = registriesOpen;
+		this.maxOccupants = maxOccupants;
+	}
+	
+	public void openStore() {
+		this.isClosed = false;
+	}
+	
+	public void closeStore() {
+		this.isClosed = true;
+	}
+	
+	public boolean getStoreStatus() {
+		return this.isClosed;
+	}
+	
+	
+}

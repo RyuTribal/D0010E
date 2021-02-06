@@ -1,0 +1,24 @@
+package labb5.controller;
+
+import labb5.model.State;
+
+public class Event {
+	private double timeStarted;
+	private double timeEnded;
+	
+	private double timeElapsed = 0;
+	
+	private EventQueue queue;
+	
+	public Event(EventQueue q) {
+		queue = q;
+	}
+	
+	public void EventStart() {
+		timeStarted = queue.getCurrentTime();
+	}
+	public void EventEnd() {
+		timeEnded = LocalTime.now();
+		timeElapsed = 
+	}
+}

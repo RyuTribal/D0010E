@@ -1,0 +1,37 @@
+package CustomerSimulator.views;
+
+import java.util.Observable;
+import java.util.Observer;
+
+import CustomerSimulator.models.Store;
+
+public class StoreView implements Observer {
+	private int counter = 0;
+	public void update(Observable o, Object arg) {
+		if(counter < 1) {
+			displayStart((Store)o);
+		}
+		else {
+			
+		}
+		counter++;
+		
+	}
+	
+	public void displayStart(Store o) {
+		System.out.println("PARAMETRAR");
+        System.out.println("==========");
+        System.out.println("Antal kassor, N..........:" + o.getAmOfRegs());
+        System.out.println("Max som ryms, M..........:" + o.getMaxPeople());
+        System.out.println("Ankomshastighet, lambda..:" + o.getLambda());
+        System.out.println("Plocktider, [P_min..Pmax]: " + o.getPickMinMax());
+        System.out.println("Betaltider, [K_min..Kmax]: " + o.getPayMinMax());
+        System.out.println("Frö, f...................:" + o.getSeed());
+
+        System.out.println("FÖRLOPP");
+        System.out.println("=======");
+        System.out.println(
+                "  Tid    Händelse    Kund    ?    led    ledT    I    $    :-(    köat    köT    köar    [Kassakö..]");
+	}
+
+}

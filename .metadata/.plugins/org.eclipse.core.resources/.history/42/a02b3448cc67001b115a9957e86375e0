@@ -1,0 +1,35 @@
+package labb5.controller;
+
+import labb5.model.Customer;
+import labb5.model.State;
+
+public class CustomerEnter extends Event {
+
+	public CustomerEnter(State state, EventQueue eventQueue) {
+		super(state, eventQueue);
+		
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public double getTime() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getName() {
+		return "Arrived";
+	}
+
+	@Override
+	public Customer getCustomer() {
+		return state.getId();
+	}
+
+}

@@ -1,0 +1,14 @@
+package labb5;
+
+import labb5.controller.Event;
+import labb5.controller.EventQueue;
+
+public class Simulator {
+	public void run() {
+		EventQueue queue = new EventQueue();
+		for(int i = 0; i < queue.getEvents().size(); i++) {
+			Event event = queue.getEvents().get(i);
+		}
+		
+	}
+}

@@ -1,0 +1,16 @@
+package CustomerSimulator.controller;
+
+import CustomerSimulator.models.Customer;
+import CustomerSimulator.models.Store;
+
+public abstract class Event {
+	private double timeStamp;
+	
+	abstract public void run();
+	abstract public double getTime();
+	abstract public Customer getCustomer();
+	
+	public double getTimeStamp() {
+		return timeStamp;
+	}
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.util.Queue"/>
+    <fullyQualifiedTypeName name="lab4.client.GomokuClient"/>
+    <fullyQualifiedTypeName name="java.util.Observer"/>
+    <fullyQualifiedTypeName name="labb5.view.View"/>
+    <fullyQualifiedTypeName name="labb5.controller.Event"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="labb5.model.StoreState"/>
+    <fullyQualifiedTypeName name="labb5.controller.EventQueue"/>
+    <fullyQualifiedTypeName name="labb5.controller.StoreOpen"/>
+    <fullyQualifiedTypeName name="labb5.controller.StoreClose"/>
+    <fullyQualifiedTypeName name="labb5.model.State"/>
+    <fullyQualifiedTypeName name="labb5.model.Customer"/>
+    <fullyQualifiedTypeName name="labb5.random.UniformRandomStream"/>
+    <fullyQualifiedTypeName name="labb5.controller.CustomerEnter"/>
+    <fullyQualifiedTypeName name="labb5.random.ExponentialRandomStream"/>
+    <fullyQualifiedTypeName name="random.ExponentialRandomStream"/>
+    <fullyQualifiedTypeName name="random.UniformRandomStream"/>
+    <fullyQualifiedTypeName name="CustomerSimulator.controller.StoreOpen"/>
+    <fullyQualifiedTypeName name="java.awt.EventQueue"/>
+    <fullyQualifiedTypeName name="CustomerSimulator.controller.EventQueue"/>
+    <fullyQualifiedTypeName name="CustomerSimulator.controller.StoreClose"/>
+    <fullyQualifiedTypeName name="CustomerSimulator.models.Customer"/>
+    <fullyQualifiedTypeName name="CustomerSimulator.models.Store"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.Observable"/>
+</qualifiedTypeNameHistroy>

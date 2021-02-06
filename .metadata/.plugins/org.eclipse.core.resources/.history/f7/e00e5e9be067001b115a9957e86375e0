@@ -1,0 +1,5 @@
+package CustomerSimulator.controller;
+
+public class EventQueue {
+
+}

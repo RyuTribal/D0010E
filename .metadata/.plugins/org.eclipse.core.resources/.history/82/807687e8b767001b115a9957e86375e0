@@ -1,0 +1,15 @@
+package labb5.controller;
+
+import labb5.model.StoreState;
+
+public class StoreOpen extends Event {
+	private StoreState store;
+	public StoreOpen(EventQueue q, double timeStarted, double timeCloses, int registriesOpen, int maxOccupants) {
+		super(q, timeStarted);
+		store = new StoreState(timeCloses, registriesOpen, maxOccupants);
+		store.openStore();
+	}
+	
+	
+
+}

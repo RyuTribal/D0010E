@@ -1,0 +1,22 @@
+package labb5;
+
+import labb5.controller.Event;
+import labb5.controller.EventQueue;
+import labb5.model.StoreState;
+
+public class Simulator {
+	public void run() {
+		System.out.println("Starting...");
+		double timeCloses = 30.0;
+		int registriesOpen = 2;
+		int maxOccupants = 10;
+		StoreState store = new StoreState(timeCloses, registriesOpen, maxOccupants);
+		System.out.println(store.getStoreStatus());
+		while(store.getStoreStatus()) {
+			store.getQueue().get(0);
+		}
+		
+		System.out.print("Ended");
+		
+	}
+}

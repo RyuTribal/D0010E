@@ -1,0 +1,16 @@
+package lab4.data;
+
+public class GomokuGrid {
+	public static Pos position;
+	public static enum Pos {
+		EMPTY, ME, OTHER
+	}
+	
+	public Pos getWorkday() {
+		   return position;
+		}
+
+		public void setWorkday(Pos pos) {
+		   position = pos;
+		}
+}

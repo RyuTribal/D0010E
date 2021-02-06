@@ -1,0 +1,10 @@
+package lab4.models;
+
+import lab4.client.GomokuClient;
+
+public class GomokuGameState {
+	private GomokuClient client = null;
+	public GomokuGameState(GomokuClient newClient){
+		client = newClient;
+	}
+}

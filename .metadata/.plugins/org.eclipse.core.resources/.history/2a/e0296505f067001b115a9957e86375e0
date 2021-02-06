@@ -1,0 +1,20 @@
+package CustomerSimulator.controller;
+
+import CustomerSimulator.models.Customer;
+import CustomerSimulator.models.Store;
+
+public class Pick extends Event {
+
+	private Store store;
+	private Customer customer;
+	private EventQueue events;
+	public Pick(Store s, EventQueue q) {
+		this.store = s;
+		this.events = q;
+	}
+	public void run() {
+		
+		
+	}
+
+}

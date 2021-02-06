@@ -1,0 +1,10 @@
+package labb5.controller;
+
+public class StoreOpen extends Event {
+
+	public StoreOpen(EventQueue q, double timeStarted) {
+		super(q, timeStarted);
+		
+	}
+
+}

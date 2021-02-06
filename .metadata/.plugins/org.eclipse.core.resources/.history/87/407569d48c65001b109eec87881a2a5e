@@ -1,0 +1,38 @@
+package lab4.data;
+
+import java.util.Observable;
+import java.util.Observer;
+
+import lab4.client.GomokuClient;
+
+public class GomokuGameState implements Observer {
+	private GomokuClient client = null;
+	private GomokuGrid grid = null;
+	private final int DEFAULT_SIZE = 19;
+	private final int NOT_STARTED = 0;
+	private final int MY_TURN = 1;
+	private final int OTHERS_TURN = 2;
+	private final int FINISHED = 3;
+	private int currentState = 0;
+	public GomokuGameState(GomokuClient gc){
+		client = gc;
+		grid = new GomokuGrid(DEFAULT_SIZE);
+	}
+	public String getMessageString(){
+		return "hey";
+	}
+	public GomokuGrid getGameGrid() {
+		return this.grid;
+	}
+	public void move(int x, int y) {
+		this.grid.move(x, y, 1);
+	}
+	public void newGame() {
+		client.run();
+	}
+	public void update(Observable arg0, Object arg1) {
+		
+		
+	}
+	
+}

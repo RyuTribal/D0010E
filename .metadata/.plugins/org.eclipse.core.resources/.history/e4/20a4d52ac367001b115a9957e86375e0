@@ -1,0 +1,50 @@
+package labb5.controller;
+
+import java.util.ArrayList;
+
+import labb5.model.State;
+
+public class EventQueue {
+	 private ArrayList<Event> eventList = new ArrayList<Event>();
+	   
+	   public int size(){
+	      return eventList.size();
+	   }
+	   
+	   public Event getFirst() {
+	      return eventList.get(0);
+	   }
+	   
+	   public void removeFirst() {
+	      eventList.remove(0);
+	   }
+	   public void addEvent(Event newEvent) {
+	      ArrayList<Event> newEventList = new ArrayList<Event>();
+	      
+	      int counter = 0;
+	      
+	      for(int i = 0; i < eventList.size(); i++) {
+	         if(eventList.get(i).getTime() <= newEvent.getTime()) 
+	         {
+	            newEventList.add(eventList.get(i));
+	            counter ++;
+	         }
+	      }
+	      
+	      newEventList.add(newEvent);
+	      
+	      for(int i = counter; i < eventList.size(); i++) 
+	      {
+	         if(eventList.get(i).getTime() > newEvent.getTime()) 
+	         {
+	            newEventList.add(eventList.get(i));
+	         }
+	      }
+	      eventList = newEventList;
+	   }
+	   
+	   public String toString()
+	   {
+	      return eventList.toString();
+	   }
+}

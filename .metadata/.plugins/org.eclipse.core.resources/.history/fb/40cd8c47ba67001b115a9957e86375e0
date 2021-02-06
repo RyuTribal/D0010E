@@ -1,0 +1,28 @@
+package labb5.model;
+
+public class Customer extends State {
+	private double timeEntered;
+	private double timeLeft;
+	private double timeInQueue;
+	private double timePicked;
+	private double timePayed;
+	public Customer(double timeEntered) {
+		this.timeEntered = timeEntered;
+	}
+	
+	public void setTimeLeft(double timeLeft) {
+		this.timeLeft = timeLeft;
+	}
+	
+	public void setTimeInQueue(double timeInQueue) {
+		this.timeInQueue = timeInQueue;
+	}
+	
+	public void setTimePicked(double timePicked) {
+		this.timePicked = timePicked;
+	}
+	
+	public void setTimePayed(double timePayed) {
+		this.timePayed = timePayed;
+	}
+}

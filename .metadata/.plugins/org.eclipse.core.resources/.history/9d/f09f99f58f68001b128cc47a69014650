@@ -1,0 +1,57 @@
+package CustomerSimulator.views;
+
+import java.util.Observable;
+import java.util.Observer;
+
+import CustomerSimulator.models.Store;
+
+public class StoreView implements Observer {
+	private int counter = 0;
+	public void update(Observable o, Object arg) {
+		if(counter < 1) {
+			displayStart((Store)o);
+		}
+		else {
+			displayEvents((Store)o);
+		}
+		counter++;
+		
+	}
+	
+	public void displayStart(Store o) {
+		System.out.println("PARAMETRAR");
+        System.out.println("==========");
+        System.out.println("Antal kassor, N..........:" + o.getAmOfRegs());
+        System.out.println("Max som ryms, M..........:" + o.getMaxPeople());
+        System.out.println("Ankomshastighet, lambda..:" + o.getLambda());
+        System.out.println("Plocktider, [P_min..Pmax]: " + o.getPickMinMax());
+        System.out.println("Betaltider, [K_min..Kmax]: " + o.getPayMinMax());
+        System.out.println("Frö, f...................:" + o.getSeed());
+
+        System.out.println("FÖRLOPP");
+        System.out.println("=======");
+        System.out.println(
+                "  Tid    Händelse    Kund    ?    led    ledT    I    $    :-(    köat    köT    köar    [Kassakö..]");
+	}
+	
+	public void displayEvents(Store o) {
+	 	System.out.println("RESULTAT");
+        System.out.println("========");
+        System.out.println("1) av " + o.getTotAmountOfCustomers() + " kunder handlade "
+                + String.valueOf(o.getTotAmountOfCustomers() - o.getTotmissedCustomers()) + " medan "
+                + o.getTotmissedCustomers() + " missades.");
+        System.out.println("2) Totalt tid " + o.getAmOfRegs() + " kassor har varit" + " lediga: "
+                + String.format("%",o.getAmOfRegs()) + " te.");
+        double snittTid = o.freeCashierTime() / o.getAmOfRegs();
+        double percentTid = 100*snittTid / o.getTime();
+        System.out.println("Genomsnittlig ledig kassatid: " + String.format("%.2f",snittTid) + "(dvs " + String.format("%.2f",percentTid)
+                + "% av tiden från öppning till sista kunden betalat).");
+
+        int totAmQueuedPeeps = o.TotPeopleInQueue();
+        double snittKöTid = o.TotPeopleInQueueTime() / totAmQueuedPeeps;
+        System.out.println("3) Total tid " + totAmQueuedPeeps + " kunder" + " tvingats köa: "
+                + String.format("%.2f",o.TotPeopleInQueueTime()) + " te.");
+        System.out.print("Genomsnittlig kötid: " + String.format("%.2f",snittKöTid) + " te.");
+	}
+
+}

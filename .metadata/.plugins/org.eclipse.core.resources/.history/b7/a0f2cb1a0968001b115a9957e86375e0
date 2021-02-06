@@ -1,0 +1,24 @@
+package CustomerSimulator.controller;
+
+import CustomerSimulator.models.Customer;
+import CustomerSimulator.models.Store;
+
+public class Pay extends Event {
+	private double timeStarted;
+    private Store store;
+    private Customer customer;
+    private EventQueue events;
+    public Pay(Store s, EventQueue q, Customer c, double t) {
+        this.store = s;
+        this.events = q;
+        this.customer = c;
+        this.timeStarted = t;
+    }
+    public void run() {
+    	System.out.println("Customer "+customer.getID()+" payed at: "+this.timeStarted);
+        this.store.decreasePeopleInStore();
+    }
+	public double getTime() {
+		return this.timeStarted;
+	}
+}

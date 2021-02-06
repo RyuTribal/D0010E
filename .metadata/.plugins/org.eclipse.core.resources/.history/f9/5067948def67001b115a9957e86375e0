@@ -1,0 +1,17 @@
+package CustomerSimulator.controller;
+
+import CustomerSimulator.models.Customer;
+import CustomerSimulator.models.Store;
+
+public class Arrive extends Event {
+	private Store store;
+	private Customer customer;
+	public Arrive(Store s) {
+		this.store = s;
+	}
+	public void run() {
+		customer = new Customer(this.store.getNewCustomerId(),this.store);
+		
+	}
+
+}

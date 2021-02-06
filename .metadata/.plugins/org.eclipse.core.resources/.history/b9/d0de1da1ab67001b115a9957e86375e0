@@ -1,0 +1,15 @@
+package labb5.controller;
+
+import java.util.ArrayList;
+
+public class EventQueue {
+	private ArrayList<Event> events = new ArrayList<Event>();
+	private currentEvent;
+	public ArrayList<Event> getEvents() {
+		return events;
+	}
+	
+	public void addEvent(Event event) {
+		events.add(event);
+	}
+}

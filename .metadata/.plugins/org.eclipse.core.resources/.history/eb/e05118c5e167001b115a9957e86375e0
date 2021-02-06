@@ -1,0 +1,24 @@
+package CustomerSimulator.controller;
+
+import CustomerSimulator.models.Store;
+
+public class StoreOpen extends Event {
+
+
+	private Store store;
+	private double arrivedTime = 0;
+	
+	public StoreOpen(Store s) {
+		super(s);
+		this.store = s;
+		
+	}
+	
+	
+	public void run() {
+		while(arrivedTime < store.getMaxTime()) {
+			arrivedTime += store.getNextArrived();
+			
+		}
+	}
+}
