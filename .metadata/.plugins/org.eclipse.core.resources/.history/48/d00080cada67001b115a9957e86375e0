@@ -1,7 +1,0 @@
-package CustomerSimulator;
-
-public class Simulator {
-	public void run() {
-		
-	}
-}

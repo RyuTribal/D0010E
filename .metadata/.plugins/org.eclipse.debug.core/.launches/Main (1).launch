@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-        <listEntry value="/labb3/src/Main.java"/>
+        <listEntry value="/labb5/src/CustomerSimulator/Main.java"/>
     </listAttribute>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
         <listEntry value="1"/>
@@ -10,8 +10,8 @@
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_EXCLUDE_TEST_CODE" value="true"/>
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_SHOW_CODEDETAILS_IN_EXCEPTION_MESSAGES" value="true"/>
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_CLASSPATH_ONLY_JAR" value="false"/>
-    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="Main"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="CustomerSimulator.Main"/>
     <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="labb3"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="H:\eclipse-workspace\labb3\src\gridgraph.txt"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="labb3"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="8 2 7 3 0.6 0.9 0.35 0.6 13"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="labb5"/>
 </launchConfiguration>

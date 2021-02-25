@@ -8,7 +8,8 @@ public class StoreOpen extends Event {
 	private double arrivedTime = 0;
 	private EventQueue queue;
 	
-	public StoreOpen(Store s, EventQueue q) {
+	public StoreOpen(Store s, EventQueue q, double t) {
+		super(s, q, t);
 		this.store = s;
 		this.queue = q;
 	}
@@ -20,7 +21,7 @@ public class StoreOpen extends Event {
 			double nextArrived = store.getNextArrived();
 			arrivedTime += nextArrived;
 			if(arrivedTime < store.getMaxTime()) {
-				queue.addEvent(new Arrive(this.store, this.queue, arrivedTime, nextArrived));
+				queue.addEvent(new Arrive(this.store, this.queue, arrivedTime));
 			}
 		}
 	}
@@ -28,6 +29,7 @@ public class StoreOpen extends Event {
 	public double getTime() {
 		return 0;
 	}
+	
 	public Customer getCustomer() {
 		return null;
 	}

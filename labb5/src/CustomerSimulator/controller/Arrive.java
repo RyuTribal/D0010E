@@ -9,13 +9,14 @@ public class Arrive extends Event {
 	private EventQueue events;
 	private double timeStarted;
 
-	public Arrive(Store s, EventQueue q, double t, double ts) {
+	public Arrive(Store s, EventQueue q, double t) {
+		super(s, q, t);
 		this.store = s;
 		this.events = q;
 		this.timeStarted = t;
 	}
+	
 	public void run() {
-		
 		if (this.store.getPeopleInStore() < this.store.getMaxPeople()) {
             this.store.increasePeopleInStore();
             this.store.increaseTotAmountOfCustomers();
@@ -26,8 +27,9 @@ public class Arrive extends Event {
             this.store.setFreeTime();
             store.update();
             double nextPickTime = this.store.getNextPickTime();
-            events.addEvent(new Pick(this.store, this.events, this.customer, this.timeStarted+nextPickTime, nextPickTime));
+            events.addEvent(new Pick(this.store, this.events, this.timeStarted+nextPickTime, this.customer, nextPickTime));
         }
+		
 		else {
 			this.store.increaseMissedCustomers();
 		}

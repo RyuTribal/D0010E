@@ -1,0 +1,261 @@
+package CustomerSimulator.models;
+
+import java.util.ArrayList;
+import java.util.Observable;
+
+import CustomerSimulator.controller.Event;
+import CustomerSimulator.controller.EventQueue;
+import CustomerSimulator.views.StoreView;
+import random.ExponentialRandomStream;
+import random.UniformRandomStream;
+
+public class Store extends Observable{
+	private boolean simRunning;
+	private int maxPeople;
+	private double timeOpen;
+    private double lambda;
+    private double[] pickMinMax;
+    private double[] payMinMax;
+    private long seed;
+    private int peopleInStore = 0;
+    private int totalAmountOfCustomers = 0;
+    private int missedCustomers = 0;
+    private ArrayList<Customer> CustomerID = new ArrayList<Customer>();
+    private double currentTime = 0.0;
+    private int totAmOfRegs;
+    private ExponentialRandomStream ArrivalTime;
+    private UniformRandomStream PickTime;
+    private UniformRandomStream PayTime;
+    private ArrayList<Integer> payQueue = new ArrayList<>();
+    private double[] cashierTotalTime;
+    private int totPeopleQueue = 0;
+    private String eventName = "";
+    private EventQueue evQueue;
+    private double freeTime = 0.0;
+    private double totalWaitTime = 0.0;
+    private double prevTime;
+    private int money = 0;
+    private int ammountFreeRegs;
+    private double currentWaitTime = 0.0;
+    private int totalPeopleQueue = 0;
+    private double currentQueueTime = 0.0;
+	public Store(double timeOpen, int cashiers, int maxPeople, double lambda, double[] pickMinMax, double[] payMinMax, long seed, EventQueue evQueue) {
+		this.totAmOfRegs = cashiers;
+		this.ammountFreeRegs = cashiers;
+        this.maxPeople = maxPeople;
+        this.lambda = lambda;
+        this.pickMinMax = pickMinMax;
+        this.payMinMax = payMinMax;
+        this.seed = seed;
+        this.ArrivalTime = new ExponentialRandomStream(lambda,seed);
+        this.PickTime = new UniformRandomStream(pickMinMax[0], pickMinMax[1], seed);
+        this.PayTime = new UniformRandomStream(payMinMax[0], payMinMax[1], seed);
+        this.simRunning = true;
+        this.timeOpen = timeOpen;
+        this.cashierTotalTime = new double[cashiers];
+        this.evQueue = evQueue;
+        addObserver(new StoreView());
+	}
+	
+	public double getNextArrived() {
+        return ArrivalTime.next();
+    }
+	
+	public double getNextPickTime() {
+        return PickTime.next();
+    }
+
+    public double getNextPayTime() {
+        return PayTime.next();
+    }
+    
+    public void closeStore() {
+    	this.simRunning = false;
+    }
+    
+    public double getMaxTime() {
+    	return timeOpen;
+    }
+    
+    public boolean getStatus() {
+    	return this.simRunning;
+    }
+    
+    public int getNewCustomerId() {
+    	return this.CustomerID.size();
+    }
+    
+    public void addCustomer(Customer c) {
+    	this.CustomerID.add(c);
+    }
+    
+    public int getPeopleInStore() {
+        return peopleInStore;
+    }
+
+    public int getMaxPeople() {
+        return this.maxPeople;
+    }
+
+    public void increasePeopleInStore() {
+        peopleInStore++;
+    }
+
+    public void decreasePeopleInStore() {
+        peopleInStore--;
+    }
+    
+    public String getQueue() {
+    	return payQueue.toString();
+    }
+    
+    public void increaseTotAmountOfCustomers() {
+        totalAmountOfCustomers++;
+    }
+    
+    public int getTotAmountOfCustomers() {
+        return this.totalAmountOfCustomers;
+    }
+
+    public void increaseMissedCustomers() {
+        missedCustomers++;
+    }
+    
+    public int getTotmissedCustomers() {
+        return missedCustomers;
+    }
+    
+    public void update() {
+    	setChanged();
+    	notifyObservers();
+    }
+    
+    public int getAmOfRegs() {
+    	return this.totAmOfRegs;
+    }
+    
+    public double getLambda() {
+    	return this.lambda;
+    }
+    
+    public String getPickMinMax() {
+    	return "["+this.pickMinMax[0]+", "+this.pickMinMax[1]+"]";
+    }
+    
+    public String getPayMinMax() {
+    	return "["+this.payMinMax[0]+", "+this.payMinMax[1]+"]";
+    }
+    
+    public long getSeed() {
+    	return this.seed;
+    }
+    
+    public double getTime() {
+    	return this.timeOpen;
+    }
+    
+    public String getEventName() {
+    	return eventName;
+    }
+    
+    public void setEventName(String name) {
+    	this.eventName = name;
+    }
+    
+    public int getCurrentCustomerId() {
+    	int id;
+    	
+    	try {
+    		id = this.evQueue.getFirst().getCustomer().getID();
+    	}
+    	
+    	catch(Exception error) {
+    		id = -1;
+    	}
+    	return id;
+    }
+    
+    public double getCurrentTime() {
+    	return this.currentTime;
+    }
+    
+    public void setCurrentTime(double time) {
+    	this.prevTime = this.currentTime;
+    	this.currentTime = time;
+    }
+    
+    public int getMoney() {
+    	return money;
+    }
+    
+    public void increasMoney() {
+    	money++;
+    }
+    
+    public EventQueue getEvQueue(){
+    	return this.evQueue;
+    }
+    
+    public void setFreeTime() {
+    	if(this.totAmOfRegs == this.ammountFreeRegs) {
+    		this.freeTime += (this.currentTime - this.prevTime)*this.totAmOfRegs;
+    	}
+    }
+    
+    public double toQueue(int id, double time) {
+    	this.currentWaitTime += (time/this.totAmOfRegs);
+    	
+    	if(this.ammountFreeRegs > 0) {
+    		this.ammountFreeRegs--;
+    	}
+    	
+    	else {
+    		this.payQueue.add(id);
+    		this.totalPeopleQueue++;
+    		this.currentQueueTime += (time/this.totAmOfRegs);
+    		this.totalWaitTime += this.currentWaitTime;
+    	}
+    	return this.currentTime + this.currentWaitTime;
+    }
+    
+    public void removeFromQueue(int id, double time) {
+    	this.currentWaitTime -=(time/this.totAmOfRegs);
+    	
+		if(this.payQueue.size() > 0) {
+			this.payQueue.remove(0);
+		}
+		
+		else {
+			this.ammountFreeRegs++;
+		}
+    }
+
+	public int getFreeRegs() {
+		return this.ammountFreeRegs;
+	}
+
+	public double getFreeTime() {
+		System.out.println("why r u gay");
+		return this.freeTime;
+	}
+
+	public int getPayQueueMaxSize() {
+		return this.totalPeopleQueue;
+	}
+
+	public double getInLineTime() {
+		return this.currentQueueTime;
+	}
+
+	public int getQueueSize() {
+		return this.payQueue.size();
+	}
+
+	public double TotPeopleInQueueTime() {
+		return this.totalWaitTime;
+	}
+	
+	public void test () {
+		
+	}
+}

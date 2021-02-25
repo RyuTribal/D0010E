@@ -21,7 +21,7 @@ public class PayQueue {
     }
     
     public void setQueueTime(double nextPayTime) {
-    	this.totalCustomerQueueTime +=nextPayTime;
+    	this.totalCustomerQueueTime += nextPayTime;
     }
     
     public int getPayQueueSize() {

@@ -1,14 +1,14 @@
 package CustomerSimulator.controller;
 
 import CustomerSimulator.models.Customer;
-import CustomerSimulator.models.PayQueue;
 import CustomerSimulator.models.Store;
 
 public class StoreClose extends Event {
 	private Store store;
 	private double timeStarted;
 	
-	public StoreClose(Store s, double t) {
+	public StoreClose(Store s, EventQueue q, double t) {
+		super(s, q, t);
 		this.store = s;
 		this.timeStarted = t;
 	}
@@ -23,6 +23,7 @@ public class StoreClose extends Event {
 	public double getTime() {
 		return this.timeStarted;
 	}
+	
 	public Customer getCustomer() {
 		return null;
 	}

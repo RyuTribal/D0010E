@@ -7,14 +7,18 @@ import CustomerSimulator.models.Store;
 
 public class StoreView implements Observer {
 	private int counter = 0;
+	
 	public void update(Observable o, Object arg) {
 		Store store = (Store) o;
+		
 		if(counter < 1) {
 			displayStart(store);
 		}
+		
 		else if (store.getEvQueue().getSize() == 0) {
 			displayResult(store);
 		}
+		
 		else {
 			displayEvents(store);
 		}
@@ -30,7 +34,6 @@ public class StoreView implements Observer {
         System.out.println("Plocktider, [P_min..Pmax]: " + o.getPickMinMax());
         System.out.println("Betaltider, [K_min..Kmax]: " + o.getPayMinMax());
         System.out.println("Frö, f...................:" + o.getSeed());
-
         System.out.println("FÖRLOPP");
         System.out.println("=======");
         System.out.println(
@@ -39,7 +42,6 @@ public class StoreView implements Observer {
 	
 	public void displayEvents(Store o) {
 		String time = String.valueOf(String.format("%.2f", o.getCurrentTime())) + "    ";
-
         String event;
 
         if (o.getEventName() == "Arrive") {
@@ -67,7 +69,6 @@ public class StoreView implements Observer {
         String timeQueued = String.valueOf(String.format("%.2f", o.getInLineTime())) + "     ";
         String inLine = String.valueOf(o.getQueueSize()) + "        ";
         String wholeQueue = o.getQueue() + " ";
-        
         String infoRow;
         
         if (event == "Open       " || event == "Close      ") {
@@ -94,10 +95,10 @@ public class StoreView implements Observer {
         System.out.println("Genomsnittlig ledig kassatid: " + String.format("%.2f",snittTid) + "(dvs " + String.format("%.2f",percentTid)
                 + "% av tiden från öppning till sista kunden betalat).");
 
-        int totAmQueuedPeeps = o.TotPeopleInQueue();
-        double snittKöTid = o.TotPeopleInQueueTime() / totAmQueuedPeeps;
-        System.out.println("3) Total tid " + totAmQueuedPeeps + " kunder" + " tvingats köa: "
-                + String.format("%.2f",o.TotPeopleInQueueTime()) + " te.");
-        System.out.print("Genomsnittlig kötid: " + String.format("%.2f",snittKöTid) + " te.");
+        int totAmQueuedPeople = o.getPayQueueMaxSize();
+        double averageQueueTime = o.getInLineTime() / totAmQueuedPeople;
+        System.out.println("3) Total tid " + totAmQueuedPeople + " kunder" + " tvingats köa: "
+                + String.format("%.2f",o.getInLineTime()) + " te.");
+        System.out.print("Genomsnittlig kötid: " + String.format("%.2f",averageQueueTime) + " te.");
 	}
 }

@@ -4,6 +4,7 @@ public class Customer {
 	private int ID;
 	private double pickTime;
 	private double payTime;
+	private int queue;
 	
 	public Customer(int ID, Store storeState, boolean check) {
         this.ID = ID;
@@ -16,5 +17,29 @@ public class Customer {
 	
 	public int getID() {
 		return this.ID;
+	}
+	
+	public double getPickTime() {
+		return this.pickTime;
+	}
+	
+	public double getPayTime() {
+		return this.payTime;
+	}
+	
+	public int getQueue() {
+		return this.queue;
+	}
+	
+	public void setQueue(int queue) {
+		this.queue = queue;
+	}
+	
+	public void setPickTime(double pickTime) {
+		this.pickTime = pickTime;
+	}
+	
+	public void setPayTime(double payTime) {
+		this.payTime = payTime;
 	}
 }

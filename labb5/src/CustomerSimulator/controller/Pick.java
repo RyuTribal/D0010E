@@ -8,27 +8,25 @@ public class Pick extends Event {
 	private Store store;
 	private Customer customer;
 	private EventQueue events;
-	private int registry;
-	public Pick(Store s, EventQueue q, Customer c, double t, double ts) {
+	
+	public Pick(Store s, EventQueue q, double t, Customer c, double ts) {
+		super(s, q, t);
 		this.store = s;
 		this.events = q;
 		this.customer = c;
 		this.timeStarted = t;
 	}
+	
 	public void run() {
-		this.registry = store.toQueue(customer.getID());
-		double newTime = this.timeStarted + this.store.getNextPayTime();
 		double payNextTime = this.store.getNextPayTime();
-		store.getQueue(registry).setQueueTime(payNextTime);
-		if(this.store.getQueue(registry).getPayQueueSize() > 1) {
-			newTime = store.getQueue(registry).getTotalTime() + payNextTime;
-		}
 		store.setEventName("Pick");
 		store.setCurrentTime(this.timeStarted);
         this.store.setFreeTime();
+        double newTime = store.toQueue(customer.getID(), payNextTime);
 		store.update();
-		events.addEvent(new Pay(this.store, this.events, this.customer, newTime, registry, payNextTime));
+		events.addEvent(new Pay(this.store, this.events, newTime, this.customer, payNextTime));
 	}
+	
 	public double getTime() {
 		return this.timeStarted;
 	}

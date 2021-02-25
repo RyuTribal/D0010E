@@ -1,0 +1,7 @@
+package CustomerSimulator.views;
+
+public abstract class View {
+	public abstract void update() {
+		
+	}
+}

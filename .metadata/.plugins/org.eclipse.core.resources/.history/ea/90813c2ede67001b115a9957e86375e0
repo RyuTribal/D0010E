@@ -1,7 +1,0 @@
-package CustomerSimulator;
-
-public class Simulator {
-	public void run(int registersOpen, int maxCustomers, double lambda, double pickMin, double pickMax, double payMin, double payMax, long seed) {
-		
-	}
-}

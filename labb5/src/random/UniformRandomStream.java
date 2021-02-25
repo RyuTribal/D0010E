@@ -2,9 +2,7 @@ package random;
 
 import java.util.Random;
 
-
 public class UniformRandomStream {
-
 	private Random rand;
 	private double lower, width;
 	

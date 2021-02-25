@@ -1,6 +1,5 @@
 package CustomerSimulator;
 
-
 import CustomerSimulator.controller.EventQueue;
 import CustomerSimulator.controller.StoreClose;
 import CustomerSimulator.controller.StoreOpen;
@@ -17,8 +16,8 @@ public class Simulator {
 		EventQueue queue = new EventQueue();
 		Store store = new Store(timeOpen, registersOpen, maxCustomers, lambda, pickMinMax, payMinMax, seed, queue);
 		store.update();
-		queue.addEvent(new StoreOpen(store, queue));
-		queue.addEvent(new StoreClose(store, timeOpen));
+		queue.addEvent(new StoreOpen(store, queue, 0));
+		queue.addEvent(new StoreClose(store, queue, timeOpen));
 		while(store.getStatus() || queue.getSize() != 0) {
 			queue.getFirst().run();
 			queue.removeEvent();

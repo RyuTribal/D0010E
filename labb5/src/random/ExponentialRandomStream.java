@@ -3,7 +3,6 @@ package random;
 import java.util.Random;
 
 public class ExponentialRandomStream {
-	
 	private Random rand;
 	private double lambda;
 	  

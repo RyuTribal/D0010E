@@ -8,28 +8,23 @@ public class EventQueue {
 	public void addEvent(Event e) {
 		ArrayList<Event> newEventList = new ArrayList<Event>();
 	      
-	      int counter = 0;
+		int counter = 0;
 	      
-	      for(int i = 0; i < events.size(); i++) 
-	      {
-	         if(events.get(i).getTime() <= e.getTime()) 
-	         {
-	            newEventList.add(events.get(i));
+		for(int i = 0; i < events.size(); i++) {
+			if(events.get(i).getTime() <= e.getTime()) {
+				newEventList.add(events.get(i));
 	            counter ++;
-	         }
-	      }
+			}
+		}
+		
+		newEventList.add(e);
 	      
-	      newEventList.add(e);
-	      
-	      for(int i = counter; i < events.size(); i++) 
-	      {
-	         if(events.get(i).getTime() > e.getTime()) 
-	         {
-	            newEventList.add(events.get(i));
-	         }
-	      }
-	      
-	      events = newEventList;
+		for(int i = counter; i < events.size(); i++) {
+			if(events.get(i).getTime() > e.getTime()) {
+				newEventList.add(events.get(i));
+			}
+		}
+		events = newEventList;
 	}
 	
 	public Event getFirst() {

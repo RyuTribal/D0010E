@@ -1,6 +1,0 @@
-package CustomerSimulator.models;
-
-public class PayQueue {
-	private double customerQueueTime;
-	private ArrayList<Integer> = new ArrayList<>();
-}

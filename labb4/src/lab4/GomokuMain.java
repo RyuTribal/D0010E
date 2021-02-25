@@ -1,20 +1,25 @@
 package lab4;
+
 import lab4.client.GomokuClient;
 import lab4.data.GomokuGameState;
 import lab4.gui.GomokuGUI;
 
+/**
+ * Main class
+ * 
+ * @author André Roaas, Ivan Sedelkin
+ */
+
 public class GomokuMain {
 	public static void main(String[] args) {
-		int portNumber = 0;
-		if(args.length < 1) {
-			portNumber = 4000;
+		if (args.length == 0) {
+			GomokuClient client = new GomokuClient(4001);
+			GomokuGameState gameState = new GomokuGameState(client);
+			GomokuGUI gGUI = new GomokuGUI(gameState, client);
+		} else {
+			GomokuClient client = new GomokuClient(Integer.parseInt(args[0]));
+			GomokuGameState gameState = new GomokuGameState(client);
+			GomokuGUI gGUI = new GomokuGUI(gameState, client);
 		}
-		else {
-			portNumber = Integer.parseInt(args[0]);
-		}
-		GomokuClient client = new GomokuClient(portNumber);
-		GomokuGameState gameState = new GomokuGameState(client);
-		GomokuGUI gui = new GomokuGUI(gameState, client);
-		
 	}
 }

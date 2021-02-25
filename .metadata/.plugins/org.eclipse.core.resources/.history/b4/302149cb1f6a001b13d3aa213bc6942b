@@ -1,0 +1,47 @@
+package CustomerSimulator;
+
+import java.util.Random;
+import CustomerSimulator.models.Store;
+
+public class Main {
+	private static Simulator sim;
+	private static Store store;
+	
+	public static void main(String[] args) {
+		method1(1, 13);
+		// method2(13);
+		// method3(13);
+		// sim.run(Double.parseDouble(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2]), Double.parseDouble(args[3]), Double.parseDouble(args[4]), Double.parseDouble(args[5]), Double.parseDouble(args[6]), Double.parseDouble(args[7]), Long.parseLong(args[8]));
+	}
+	
+	public static Store method1(int cashier, int seed) {
+		sim = new Simulator();
+		sim.run(8, cashier, 7, 3, 0.6, 0.9, 0.35, 0.6, seed);
+		return store;
+	}
+	
+	public static int method2(int seed) {
+		Store store;
+		int cashier = 1;
+
+		while (true) {
+			store = method1(cashier, seed);
+			if (store.getTotmissedCustomers() > 0) {
+				cashier++;
+			}
+			
+			else {
+				break;
+			}
+		}
+		return cashier;
+	}
+	
+	public static void method3(int seed) {
+		Random rand = new Random(seed);
+		
+		for (int i = 0; i < 10; i++) {
+			method2(rand.nextInt());
+		}
+	}
+}
